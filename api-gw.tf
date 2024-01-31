@@ -25,6 +25,7 @@ resource "aws_api_gateway_integration" "upload_integration" {
   http_method             = aws_api_gateway_method.upload_method.http_method
   type                    = "AWS"
   integration_http_method = "PUT"
-  uri                     = aws_s3_bucket.upload-files-gw-s3.arn
+  uri                     = "arn:aws:apigateway:us-east-1:s3:action/PutObject&Bucket=upload-files-gw-s3&Key={Key}"
+  credentials             = aws_iam_role.apigw_into_s3_role.arn
 }
 
