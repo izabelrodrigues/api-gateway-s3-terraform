@@ -11,6 +11,7 @@ resource "aws_iam_policy" "upload_files_apigw_into_s3" {
         Effect = "Allow"
         Action = [
           "s3:PutObject",
+          "s3:GetObject"
         ]
         Resource = "arn:aws:s3:::upload-files-gw-s3/*"
       },
@@ -29,6 +30,8 @@ resource "aws_iam_policy" "upload_files_apigw_into_s3" {
       }
     ]
   })
+
+  depends_on = [ aws_s3_bucket.upload-files-gw-s3 ]
 }
 
 ## ROLE ##
